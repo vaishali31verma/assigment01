@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import "./App.css";
-import { useGetPokemonByNameQuery } from "./redux/pokemon";
 import LoadingSpinner from "./components/LoadingSpinner";
 import ImageCard from "./components/ImageCard";
+import { useGetDogsDataQuery } from "./redux/dogsApi";
 
 function App() {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   const [filter, setFilter] = useState({ size: "med", breed: 0 }); // Initial filter value
-  const { data, error, isLoading, isFetching } = useGetPokemonByNameQuery({
+  const { data, error, isLoading, isFetching } = useGetDogsDataQuery({
     limit,
     page,
     filter,
@@ -47,7 +47,7 @@ function App() {
             <select
               className="border p-2"
               name="size"
-              value={filter}
+              value={filter.size}
               onChange={handleFilterChange}
             >
               <option value="small">small</option>
